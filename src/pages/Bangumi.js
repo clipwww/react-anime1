@@ -69,7 +69,7 @@ class Bangumi extends Component {
         <Collapse.Panel key={item.id}
           header={<div><Tag color={item.type === 'm3u8' ? "#f50" : "#2db7f5" }>{item.type}</Tag>{item.name}</div>}>
           {content}
-          <a href={`https://clipwww-nuxt-express-project.herokuapp.com/api/anime1/download/${item.type}?url=${item.m3u8Url || item.mp4Url}`} target="_blank" download>
+          <a href={`https://clipwww-nuxt-express-project.herokuapp.com/api/anime1/download/${item.type}?url=${item.m3u8Url || item.mp4Url}`} target="_blank" download={item.name}>
             <Button type="ghost" icon="download" size="large">下載</Button>
           </a>
         </Collapse.Panel>
