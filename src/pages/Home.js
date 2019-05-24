@@ -66,7 +66,12 @@ class Home extends Component {
           loading={isLoading}
           dataSource={animeList}
           renderItem={item => (
-            <List.Item actions={[<Link to={{ pathname: `/${item.id}/`, search: `?title=${item.name}` }}><Icon type="info-circle" theme="filled" /></Link>]}>{item.name}</List.Item>
+            <List.Item actions={[
+              <Link to={{ pathname: `/${item.id}/`, search: `?title=${item.name}` }}>
+                <Icon type="info-circle" theme="filled" style={{ fontSize: '16px' }} />
+              </Link>]}>
+              {item.name}
+            </List.Item>
           )}>
 
         </List>

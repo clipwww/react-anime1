@@ -18,8 +18,8 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
             </Link>
           </Layout.Header>
-          <Layout.Content style={{ padding: '30px 50px 0' }}>
-            <div style={{ background: '#fff', padding: '15px' }}>
+          <Layout.Content style={{ padding: '30px 15px 0' }}>
+            <div style={{ background: '#fff', padding: '15px', maxWidth: '600px', margin: '0 auto' }}>
               <Route exact path="/" component={Home}></Route>
               <Route path="/:id" component={Bangumi} />
             </div>   
