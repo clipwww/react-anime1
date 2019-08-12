@@ -21,13 +21,6 @@ class Bangumi extends Component {
     this.fetchData();
   }
 
-  componentWillReceiveProps({ match }) {
-    this.setState({
-      id: match.params.id
-    })
-    this.fetchData();
-  }
-
   async fetchData() {
     this.setState({
       isLoading: true,
@@ -62,6 +55,8 @@ class Bangumi extends Component {
               </video>
             </div>
           )
+          break;
+        default:
           break;
       }
 

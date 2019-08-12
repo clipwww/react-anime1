@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link, HashRouter } from 'react-router-dom';
-import { List, Icon } from 'antd'
+import { List, Icon, Input, Divider } from 'antd'
 import Axios from 'axios';
+
+const { Search } = Input;
 
 
 class Home extends Component {
@@ -11,9 +13,11 @@ class Home extends Component {
     this.state = {
       isLoading: false,
       animeList: [],
+      keyword: ''
     }
 
     this.fetchData = this.fetchData.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   componentDidMount() {
@@ -54,17 +58,25 @@ class Home extends Component {
     })
   }
 
+  onSearch(value) {
+    this.setState({
+      keyword: value
+    })
+  }
+
   render() {
-    const { animeList, isLoading } = this.state;
+    const { animeList, isLoading, keyword } = this.state;
 
     return (
       <HashRouter>
+        <Search size="large" placeholder="搜尋" onSearch={this.onSearch} />
+        <Divider />
         <List
           header={<h1 style={{ margin: 0 }}>Anime1動畫列表 <Icon type="redo" onClick={this.fetchData} /></h1>}
           bordered
           pagination
           loading={isLoading}
-          dataSource={animeList}
+          dataSource={animeList.filter(item => keyword ? item.name.includes(keyword) : true)}
           renderItem={item => (
             <List.Item actions={[
               <Link to={{ pathname: `/${item.id}/`, search: `?title=${item.name}` }}>
