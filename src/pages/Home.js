@@ -3,6 +3,8 @@ import { Link, HashRouter } from 'react-router-dom';
 import { List, Icon, Input, Divider } from 'antd'
 import Axios from 'axios';
 
+import { logEvent } from '../utils/ga'
+
 const { Search } = Input;
 
 
@@ -59,6 +61,7 @@ class Home extends Component {
   }
 
   onSearch(value) {
+    logEvent('Search Click', 'Search:' + value);
     this.setState({
       keyword: value
     })
@@ -72,14 +75,14 @@ class Home extends Component {
         <Search size="large" placeholder="搜尋" onSearch={this.onSearch} />
         <Divider />
         <List
-          header={<h1 style={{ margin: 0 }}>Anime1動畫列表 <Icon type="redo" onClick={this.fetchData} /></h1>}
+          header={<h1 style={{ margin: 0 }}>Anime1動畫列表 <Icon type="redo" onClick={() => { this.fetchData();logEvent('Reload Click', 'Fetch Data'); }} /></h1>}
           bordered
           pagination
           loading={isLoading}
           dataSource={animeList.filter(item => keyword ? item.name.includes(keyword) : true)}
           renderItem={item => (
             <List.Item actions={[
-              <Link to={{ pathname: `/${item.id}/`, search: `?title=${item.name}` }}>
+              <Link to={{ pathname: `/${item.id}/`, search: `?title=${item.name}` }} onClick={() => {logEvent('Nav Click', item.name)}}>
                 <Icon type="info-circle" theme="filled" style={{ fontSize: '16px' }} />
               </Link>]}>
               {item.name}

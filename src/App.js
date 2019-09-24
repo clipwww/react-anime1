@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Route, HashRouter, Link } from "react-router-dom";
 import { Layout } from 'antd';
 
+
+import { initGA } from './utils/ga'
 import logo from './logo.svg';
 import Home from './pages/Home.js'
 import Bangumi from './pages/Bangumi.js'
@@ -9,6 +11,8 @@ import Bangumi from './pages/Bangumi.js'
 import './App.css';
 
 function App() {
+  
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   useEffect(() => {
     function onMouseMove(e) {
@@ -22,6 +26,11 @@ function App() {
       window.removeEventListener('mousemove', onMouseMove);
     }
   })
+
+  useEffect(() => {
+    initGA();
+  }, [])
+  
 
   return (
     <HashRouter>
