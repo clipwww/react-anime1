@@ -44,7 +44,7 @@ class Bangumi extends Component {
   }
 
   render() {
-    const { title, isLoading, bangumiList } = this.state;
+    const { id, title, isLoading, bangumiList } = this.state;
     const listItem = bangumiList.map(item => {
       let content;
       
@@ -55,6 +55,7 @@ class Bangumi extends Component {
               <video controls>
                 <source src={`https://clipwww-nuxt-express-project.herokuapp.com/api/anime1/download/mp4?url=${item.mp4Url}`} type="video/mp4"></source>
               </video>
+              <iframe src={item.mp4Url} ></iframe> 
             </div>
           )
           break;
@@ -79,6 +80,7 @@ class Bangumi extends Component {
     return (
       <Spin spinning={isLoading}>
         <PageHeader onBack={() => window.history.back()} title={title} subTitle={<Icon type="redo" onClick={() => { this.fetchData();logEvent('Reload Click', 'Fetch Data'); }} />}>
+          <a href={`https://anime1.me/?cat=${id}`} target="_blank">原始連結</a>
           <Collapse>
             {listItem}
           </Collapse>
