@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, HashRouter } from 'react-router-dom';
-import { List, Icon, Input, Divider } from 'antd'
+import { List, Icon, Input, Divider, notification } from 'antd'
 import Axios from 'axios';
 
 import { logEvent } from '../utils/ga'
@@ -24,6 +24,13 @@ class Home extends Component {
 
   componentDidMount() {
     console.log('componentDidMount');
+
+    const btn = ( <a href="https://liff-sp.herokuapp.com/">點我前往</a>);
+    notification.info({
+      message: '有新的版本囉!',
+      duration: null,
+      btn
+    })
 
     const anime1 = JSON.parse(window.localStorage.getItem('anime1') || null);
     if (anime1 && Math.abs(anime1.timestamp - (+new Date())) < 1000 * 60 ) {
