@@ -25,7 +25,7 @@ class Home extends Component {
   componentDidMount() {
     console.log('componentDidMount');
 
-    const btn = ( <a href="https://liff-sp.herokuapp.com/">點我前往</a>);
+    const btn = ( <a href="https://clipwww.github.io/liff-anime1/">點我前往</a>);
     notification.info({
       message: '有新的版本囉!',
       duration: null,
